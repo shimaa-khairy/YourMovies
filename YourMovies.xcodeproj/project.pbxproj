@@ -13,6 +13,7 @@
 		C4F6B9A92083B89300B0F1B9 /* YourMovies.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C4F6B9A72083B89300B0F1B9 /* YourMovies.xcdatamodeld */; };
 		C4F6B9AB2083B8A300B0F1B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4F6B9AA2083B8A300B0F1B9 /* Assets.xcassets */; };
 		C4F6B9AE2083B8A300B0F1B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4F6B9AC2083B8A300B0F1B9 /* LaunchScreen.storyboard */; };
+		C4F6B9B62084E1AF00B0F1B9 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F6B9B52084E1AE00B0F1B9 /* Networking.swift */; };
 		EEA20B6DA9601009BC3A9AA1 /* Pods_YourMovies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE919B6C0C39D377617EE5D3 /* Pods_YourMovies.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		C4F6B9AA2083B8A300B0F1B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C4F6B9AD2083B8A300B0F1B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C4F6B9AF2083B8A300B0F1B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C4F6B9B52084E1AE00B0F1B9 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		EE919B6C0C39D377617EE5D3 /* Pods_YourMovies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YourMovies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -79,6 +81,7 @@
 				C4F6B9AC2083B8A300B0F1B9 /* LaunchScreen.storyboard */,
 				C4F6B9AF2083B8A300B0F1B9 /* Info.plist */,
 				C4F6B9A72083B89300B0F1B9 /* YourMovies.xcdatamodeld */,
+				C4F6B9B52084E1AE00B0F1B9 /* Networking.swift */,
 			);
 			path = YourMovies;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 				C4F6B9A32083B89300B0F1B9 /* ViewController.swift in Sources */,
 				C4F6B9A12083B89300B0F1B9 /* AppDelegate.swift in Sources */,
 				C4F6B9A92083B89300B0F1B9 /* YourMovies.xcdatamodeld in Sources */,
+				C4F6B9B62084E1AF00B0F1B9 /* Networking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,7 +358,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = YourMovies/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = iti.YourMovies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -369,7 +376,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = YourMovies/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = iti.YourMovies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
