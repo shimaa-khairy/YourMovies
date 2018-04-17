@@ -45,9 +45,10 @@ class ViewController: UIViewController,UICollectionViewDataSource, UICollectionV
             break
         case 1:
             
-            noMoviesLabel.text = "No Movies In Favorites.";
             cellsNumber = 0
             moviesCollectionView.reloadData();
+            noMoviesLabel.text = "No Movies In Favorites."
+            
             // set the height constraint to 0
             /*let heightConstraint = NSLayoutConstraint(item: moviesCollectionView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 0)
             */
@@ -86,10 +87,23 @@ func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as UICollectionViewCell
-    
-    
+
     return cell
 }
 
 }
+
+extension ViewController : ViewControllerView{
+    func updateMoviesList(movies: [Movie]) {
+        <#code#>
+    }
+    
+    func noMoviesFound() {
+        <#code#>
+    }
+    
+    
+}
+
+
 

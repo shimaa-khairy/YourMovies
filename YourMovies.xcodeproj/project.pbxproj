@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		C415095D2085EEDF003E94CD /* temp_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C415095C2085EEDF003E94CD /* temp_image.jpg */; };
+		C415095F208646CC003E94CD /* ViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C415095E208646CC003E94CD /* ViewControllerView.swift */; };
+		C4150961208647FA003E94CD /* DetailsViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4150960208647FA003E94CD /* DetailsViewControllerView.swift */; };
+		C41509632086481A003E94CD /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41509622086481A003E94CD /* DetailsViewController.swift */; };
+		C41509652086591A003E94CD /* ViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41509642086591A003E94CD /* ViewControllerPresenter.swift */; };
+		C415096720865936003E94CD /* DetailsViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C415096620865936003E94CD /* DetailsViewControllerPresenter.swift */; };
+		C4150969208659CB003E94CD /* ViewControllerPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4150968208659CB003E94CD /* ViewControllerPresenterProtocol.swift */; };
+		C415096B20865AD5003E94CD /* DetailsViewControllerPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C415096A20865AD5003E94CD /* DetailsViewControllerPresenterProtocol.swift */; };
 		C4F6B9A12083B89300B0F1B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F6B9A02083B89300B0F1B9 /* AppDelegate.swift */; };
 		C4F6B9A32083B89300B0F1B9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F6B9A22083B89300B0F1B9 /* ViewController.swift */; };
 		C4F6B9A62083B89300B0F1B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4F6B9A42083B89300B0F1B9 /* Main.storyboard */; };
@@ -22,6 +29,13 @@
 		A7C39236C92D5530848A2233 /* Pods-YourMovies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YourMovies.release.xcconfig"; path = "Pods/Target Support Files/Pods-YourMovies/Pods-YourMovies.release.xcconfig"; sourceTree = "<group>"; };
 		C1508FEAC992CAE29A731ECA /* Pods-YourMovies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YourMovies.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YourMovies/Pods-YourMovies.debug.xcconfig"; sourceTree = "<group>"; };
 		C415095C2085EEDF003E94CD /* temp_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = temp_image.jpg; sourceTree = "<group>"; };
+		C415095E208646CC003E94CD /* ViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerView.swift; sourceTree = "<group>"; };
+		C4150960208647FA003E94CD /* DetailsViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewControllerView.swift; sourceTree = "<group>"; };
+		C41509622086481A003E94CD /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		C41509642086591A003E94CD /* ViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerPresenter.swift; sourceTree = "<group>"; };
+		C415096620865936003E94CD /* DetailsViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewControllerPresenter.swift; sourceTree = "<group>"; };
+		C4150968208659CB003E94CD /* ViewControllerPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerPresenterProtocol.swift; sourceTree = "<group>"; };
+		C415096A20865AD5003E94CD /* DetailsViewControllerPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewControllerPresenterProtocol.swift; sourceTree = "<group>"; };
 		C4F6B99D2083B89300B0F1B9 /* YourMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4F6B9A02083B89300B0F1B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4F6B9A22083B89300B0F1B9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +99,13 @@
 				C4F6B9AF2083B8A300B0F1B9 /* Info.plist */,
 				C4F6B9A72083B89300B0F1B9 /* YourMovies.xcdatamodeld */,
 				C4F6B9B52084E1AE00B0F1B9 /* Networking.swift */,
+				C415095E208646CC003E94CD /* ViewControllerView.swift */,
+				C4150960208647FA003E94CD /* DetailsViewControllerView.swift */,
+				C41509622086481A003E94CD /* DetailsViewController.swift */,
+				C41509642086591A003E94CD /* ViewControllerPresenter.swift */,
+				C415096620865936003E94CD /* DetailsViewControllerPresenter.swift */,
+				C4150968208659CB003E94CD /* ViewControllerPresenterProtocol.swift */,
+				C415096A20865AD5003E94CD /* DetailsViewControllerPresenterProtocol.swift */,
 			);
 			path = YourMovies;
 			sourceTree = "<group>";
@@ -212,10 +233,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C415096B20865AD5003E94CD /* DetailsViewControllerPresenterProtocol.swift in Sources */,
 				C4F6B9A32083B89300B0F1B9 /* ViewController.swift in Sources */,
+				C4150969208659CB003E94CD /* ViewControllerPresenterProtocol.swift in Sources */,
 				C4F6B9A12083B89300B0F1B9 /* AppDelegate.swift in Sources */,
+				C4150961208647FA003E94CD /* DetailsViewControllerView.swift in Sources */,
+				C415095F208646CC003E94CD /* ViewControllerView.swift in Sources */,
+				C415096720865936003E94CD /* DetailsViewControllerPresenter.swift in Sources */,
 				C4F6B9A92083B89300B0F1B9 /* YourMovies.xcdatamodeld in Sources */,
 				C4F6B9B62084E1AF00B0F1B9 /* Networking.swift in Sources */,
+				C41509632086481A003E94CD /* DetailsViewController.swift in Sources */,
+				C41509652086591A003E94CD /* ViewControllerPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
