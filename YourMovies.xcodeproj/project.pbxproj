@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C48D4E942085F6C200ADC0E5 /* NetworkingProtcol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48D4E932085F6C200ADC0E5 /* NetworkingProtcol.swift */; };
+		C48D4E96208629F900ADC0E5 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48D4E95208629F900ADC0E5 /* Movie.swift */; };
 		C4F6B9A12083B89300B0F1B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F6B9A02083B89300B0F1B9 /* AppDelegate.swift */; };
 		C4F6B9A32083B89300B0F1B9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F6B9A22083B89300B0F1B9 /* ViewController.swift */; };
 		C4F6B9A62083B89300B0F1B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4F6B9A42083B89300B0F1B9 /* Main.storyboard */; };
@@ -20,6 +22,8 @@
 /* Begin PBXFileReference section */
 		A7C39236C92D5530848A2233 /* Pods-YourMovies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YourMovies.release.xcconfig"; path = "Pods/Target Support Files/Pods-YourMovies/Pods-YourMovies.release.xcconfig"; sourceTree = "<group>"; };
 		C1508FEAC992CAE29A731ECA /* Pods-YourMovies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YourMovies.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YourMovies/Pods-YourMovies.debug.xcconfig"; sourceTree = "<group>"; };
+		C48D4E932085F6C200ADC0E5 /* NetworkingProtcol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingProtcol.swift; sourceTree = "<group>"; };
+		C48D4E95208629F900ADC0E5 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		C4F6B99D2083B89300B0F1B9 /* YourMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4F6B9A02083B89300B0F1B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4F6B9A22083B89300B0F1B9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +78,7 @@
 		C4F6B99F2083B89300B0F1B9 /* YourMovies */ = {
 			isa = PBXGroup;
 			children = (
+				C48D4E932085F6C200ADC0E5 /* NetworkingProtcol.swift */,
 				C4F6B9A02083B89300B0F1B9 /* AppDelegate.swift */,
 				C4F6B9A22083B89300B0F1B9 /* ViewController.swift */,
 				C4F6B9A42083B89300B0F1B9 /* Main.storyboard */,
@@ -82,6 +87,7 @@
 				C4F6B9AF2083B8A300B0F1B9 /* Info.plist */,
 				C4F6B9A72083B89300B0F1B9 /* YourMovies.xcdatamodeld */,
 				C4F6B9B52084E1AE00B0F1B9 /* Networking.swift */,
+				C48D4E95208629F900ADC0E5 /* Movie.swift */,
 			);
 			path = YourMovies;
 			sourceTree = "<group>";
@@ -210,6 +216,8 @@
 			files = (
 				C4F6B9A32083B89300B0F1B9 /* ViewController.swift in Sources */,
 				C4F6B9A12083B89300B0F1B9 /* AppDelegate.swift in Sources */,
+				C48D4E96208629F900ADC0E5 /* Movie.swift in Sources */,
+				C48D4E942085F6C200ADC0E5 /* NetworkingProtcol.swift in Sources */,
 				C4F6B9A92083B89300B0F1B9 /* YourMovies.xcdatamodeld in Sources */,
 				C4F6B9B62084E1AF00B0F1B9 /* Networking.swift in Sources */,
 			);
