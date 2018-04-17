@@ -8,32 +8,54 @@
 
 import UIKit
 import Alamofire
-class Movie:Decodable
-{
-    let name:String
-    let capital:String
+////////////////////////////
+
+class JsonResult:Decodable{
+    
+    let results:[Movie]
+    init() {
+        results = [Movie]()
+    }
     
 }
-
+/////////////////////////////
 class Networking: NSObject {
     var movies = [Movie]()
-    func startAlamo(){
-    let url = URL(string: "https://restcountries.eu/rest/v2/all")
+    var jsonResult = JsonResult()
+}
+
+extension Networking : NetworkingProtocol{
     
-    Alamofire.request(url!).responseJSON{(response) in
-        let resultData = response.data
-       // print (resultData)
-        do{
-        self.movies = try JSONDecoder().decode([Movie].self, from: resultData!)
-            
+    func getMovies(requestType:Int)->[Movie] {
+        let url: URL
+        switch requestType {
+        case 0:
+            url = URL(string: "http://api.themoviedb.org/3/discover/movie?api_key=30b6cd3d9e4cad94e10055d0eb5cdbcc&sort_by=popularity.desc")!
+        case 1:
+            url = URL(string: "http://api.themoviedb.org/3/discover/movie?api_key=30b6cd3d9e4cad94e10055d0eb5cdbcc&sort_by=vote_average.desc")!
+        default:
+            url = URL(string: "http://api.themoviedb.org/3/discover/movie?api_key=30b6cd3d9e4cad94e10055d0eb5cdbcc&sort_by=popularity.desc")!
+        }
+       
+       
+        Alamofire.request(url).responseJSON{(response) in
+            let resultData = response.data
+            print(response.result)
+            do{
+                self.jsonResult = try JSONDecoder().decode(JsonResult.self, from: resultData!)
+                self.movies = self.jsonResult.results
+                print(self.jsonResult.results.count)
             for movie in self.movies{
-                print (movie.name,":",movie.capital)
-            }
-      }catch{
-        print ("error")}
+                print (movie.id,":",movie.title,":",movie.vote_average)
+                }
+            }catch{
+                print ("error")}
         }
         
-     
-        
+       return self.movies
+      
     }
+    
+    
+    
 }
