@@ -9,5 +9,7 @@
 import Foundation
 protocol NetworkingProtocol{
     
-    func getMovies(requestType:Int) ->[Movie]
+    func getMovies(requestType:Int) 
+    func getMovieTrailers(movieId:Int)
+    func getMovieReviews(movieId:Int)
 }
