@@ -9,33 +9,94 @@
 import UIKit
 
 class DetailsViewController: UITableViewController {
+    
+    public var movieDisplayed : Movie?
+    var isFave = false
+    
+    @IBOutlet weak var trailersCollectionView: UICollectionView!
+    
+    @IBOutlet weak var moviePosterImageView: UIImageView!
+    
+    @IBOutlet weak var movieTitleTextView: UILabel!
+    
+    @IBOutlet weak var isMoviewFavoriteButton: UIButton!
+    
+    @IBOutlet weak var movieRealseDateTextView: UILabel!
+    
+    @IBOutlet weak var movieRateTextView: UILabel!
+    
+    @IBOutlet weak var movieOverviewTextView: UITextView!
+    
+    @IBOutlet weak var reviewsTableViewOutlet: UITableView!
+    let trailers = ["first","second","third","fourth","fifth"]
+    let reuseIdentifier = "CollectionCellIdentifer"
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        //Setup the trailers collection
+        self.navigationController?.title = "Details"
+        trailersCollectionView.delegate = self
+        trailersCollectionView.dataSource = self
+        trailersCollectionView.isScrollEnabled = true
+        trailersCollectionView.reloadData()
+        
+        //Setup the reviews table view
+        reviewsTableViewOutlet.delegate = self
+        reviewsTableViewOutlet.dataSource = self
+        reviewsTableViewOutlet.reloadData()
+        
+        
+        //Adds the rate with colors to the view
+        addMovieRate()
+        movieTitleTextView.text = movieDisplayed?.title
+        movieOverviewTextView.text = movieDisplayed?.overview
+        movieRealseDateTextView.text = movieDisplayed?.release_date
+        moviePosterImageView.sd_setImage(with: URL(string: movieDisplayed!.poster_path), placeholderImage: UIImage(named: "temp_image.jpg"))
     }
+    
+    func addMovieRate() {
+        movieRateTextView.text = String(movieDisplayed!.vote_average)
+        movieRateTextView.backgroundColor = movieDisplayed!.vote_average > 5 ?
+            UIColor(red:0.95, green:0.77, blue:0.06, alpha:1.0) :
+            UIColor(red:0.15, green:0.68, blue:0.38, alpha:1.0)
+        movieRateTextView.textColor = movieDisplayed!.vote_average > 5 ?
+            UIColor.black :
+            UIColor.white
 
+    }
+    
+    @IBAction func addToFavoriteAction(_ sender: UIButton) {
+        //Use the movie isFav bool next
+        if(!isFave){
+        sender.setImage(UIImage(named:"favorites_fill_ic.png"), for: UIControlState.normal)
+        isFave = true
+            self.addToFavorite()
+    }else{
+        sender.setImage(UIImage(named:"favorites_ic.png"), for: UIControlState.normal)
+        isFave = false
+            self.removeFromFavorite()
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
-
+    /*
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 0
     }
+    */
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -94,12 +155,31 @@ class DetailsViewController: UITableViewController {
 
 }
 
+extension DetailsViewController : UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return trailers.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as UICollectionViewCell
+        
+        let movieTrailerImage : UIImageView = cell.viewWithTag(1) as! UIImageView
+        let movieTrailerTitle : UILabel = cell.viewWithTag(2) as! UILabel
+        
+        movieTrailerTitle.text = trailers[indexPath.row]
+        
+        return cell
+    }
+    
+    
+}
 extension DetailsViewController : DetailsViewCOntrollerView{
     func addToFavorite() {
-        <#code#>
+        
     }
     
     func removeFromFavorite() {
-        <#code#>
+        
     }
 }

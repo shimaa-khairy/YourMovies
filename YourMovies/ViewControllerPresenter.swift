@@ -8,12 +8,26 @@
 
 import Foundation
 class ViewControllerPresenter: ViewControllerPresenterProtocol {
+    var mView : ViewControllerView
+    
+    init(view : ViewControllerView) {
+        mView = view
+    }
+    
     func getMostPopulerMovies() {
-        <#code#>
+        //TODO Call the repo to get movies
     }
     
     func getTopRatedMovies() {
-        <#code#>
+        //TODO Call the repo to get movies
+    }
+    
+    func getTheMoviesLiet(movies: [Movie]) {
+        if(movies.count > 0){
+            mView.updateMoviesList(movies: movies)
+        }else{
+            mView.noMoviesFound()
+        }
     }
     
 }

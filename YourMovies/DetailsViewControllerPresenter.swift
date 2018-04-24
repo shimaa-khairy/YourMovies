@@ -9,11 +9,11 @@
 import Foundation
 class DetailsViewControllerPresenter: DetailsViewControllerPresenterProtocol {
     func addToFavorite(movie: Movie) {
-        <#code#>
+        
     }
     
     func removeFromFavorite(movie: Movie) {
-        <#code#>
+        
     }
     
 }

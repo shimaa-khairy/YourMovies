@@ -10,12 +10,13 @@ import UIKit
 
 class Movie: Decodable
 {
-    let id:Int
-    let title:String
-    let poster_path:String
-    let overview:String
-    let release_date:String
-    let vote_average:Float
+    var id:Int
+    var title:String
+    var poster_path:String
+    var overview:String
+    var release_date:String
+    var vote_average:Float
+    var isFavorite:Bool?
     init() {
         id = 0
         title = ""
