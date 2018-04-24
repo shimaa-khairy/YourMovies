@@ -20,7 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        
         ///////for testing
         var n = Networking()
-        n.getMovies(requestType: 1)
+        //n.getMovies(requestType: 1)
+        n.getMovieReviews(movieId: 337167)
+        n.getMovieTrailers(movieId:337167)
         return true
     }
 
