@@ -43,10 +43,10 @@ class DetailsViewController: UITableViewController {
         trailersCollectionView.reloadData()
         
         //Setup the reviews table view
-        reviewsTableViewOutlet.delegate = self
+       /* reviewsTableViewOutlet.delegate = self
         reviewsTableViewOutlet.dataSource = self
         reviewsTableViewOutlet.reloadData()
-        
+        */
         
         //Adds the rate with colors to the view
         addMovieRate()
