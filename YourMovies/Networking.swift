@@ -34,6 +34,7 @@ class Networking: NSObject {
     var jsonResult = JsonResult()
     var reviewResult = MovieReviewResult()
     var TrailerResult = MovieTrailerResult()
+    var CoreDataOpject = CoreDataModel()
 }
 
 extension Networking : NetworkingProtocol{
@@ -59,15 +60,15 @@ extension Networking : NetworkingProtocol{
             do{
                 self.jsonResult = try JSONDecoder().decode(JsonResult.self, from: resultData!)
                 self.movies = self.jsonResult.results
-                print(self.jsonResult.results.count)
+                self.CoreDataOpject.saveAllMovies(movies: self.movies)
             for movie in self.movies{
-                print (movie.id,":",movie.title,":",movie.vote_average)
+               // print (movie.id,":",movie.title,":",movie.vote_average)
                 }
             }catch{
+               
                 print ("error")}
         }
         
-       
       
     }
    ///////////////////////////////////////////
