@@ -7,15 +7,34 @@
 //
 
 import Foundation
+import Reachability
 class RepositoryImpl : RepositoryProtocol{
+    let reach = Reachability()!
+
     var coreDataObject = CoreDataModel()
     var netWorkingObject = Networking()
     func getAllMovies(requestType: Int){
-        var connection = true
-        if(connection){
-            netWorkingObject.getMovies(requestType: requestType)
-        }else{
-            var movies = coreDataObject.getAllMovies()
+        //Check internet connection
+        reach.whenReachable = { reachability in
+            if reachability.connection == .wifi {
+                print("Reachable via WiFi")
+                self.netWorkingObject.getMovies(requestType: requestType)
+
+                } else {
+                print("Reachable via Cellular")
+                self.netWorkingObject.getMovies(requestType: requestType)
+               }
+        }
+        
+        reach.whenUnreachable = { _ in
+            var movies = self.coreDataObject.getAllMovies()
+            print("Not reachable")
+        }
+        
+        do {
+            try reach.startNotifier()
+        } catch {
+            print("Unable to start notifier")
         }
     }
     
