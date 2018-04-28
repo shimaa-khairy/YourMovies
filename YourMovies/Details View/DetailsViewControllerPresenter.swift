@@ -8,6 +8,14 @@
 
 import Foundation
 class DetailsViewControllerPresenter: DetailsViewControllerPresenterProtocol {
+    
+    var mView : DetailsViewControllerView
+    
+    init(view : DetailsViewControllerView) {
+        mView = view
+    }
+    
+    
     func addToFavorite(movie: Movie) {
         
     }

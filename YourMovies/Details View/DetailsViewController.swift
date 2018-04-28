@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Reachability
 
-class DetailsViewController: UITableViewController {
+class DetailsViewController:UITableViewController {
     
     public var movieDisplayed : Movie?
     var isFave = false
-    
+    let reach = Reachability()!
+
     @IBOutlet weak var trailersCollectionView: UICollectionView!
     
     @IBOutlet weak var moviePosterImageView: UIImageView!
@@ -27,26 +29,45 @@ class DetailsViewController: UITableViewController {
     
     @IBOutlet weak var movieOverviewTextView: UITextView!
     
-    @IBOutlet weak var reviewsTableViewOutlet: UITableView!
+    //@IBOutlet weak var reviewsTableViewOutlet: UITableView!
     let trailers = ["first","second","third","fourth","fifth"]
     let reuseIdentifier = "CollectionCellIdentifer"
+    var mPresenter  : DetailsViewControllerPresenterProtocol?
 
+    var isInternetAvailable = false
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
+        self.navigationItem.title = "Details"
+        mPresenter = DetailsViewControllerPresenter(view: self)
+        //Check internet connection
+        reach.whenReachable = { reachability in
+            if reachability.connection == .wifi {
+                print("Reachable via WiFi")
+                self.isInternetAvailable = true
+                self.tableView.reloadData()
+            } else {
+                print("Reachable via Cellular")
+                self.isInternetAvailable = true
+                self.tableView.reloadData()
+            }
+        }
+        
+        reach.whenUnreachable = { _ in
+            print("Not reachable")
+        }
+        
+        do {
+            try reach.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
+        
         //Setup the trailers collection
         self.navigationController?.title = "Details"
         trailersCollectionView.delegate = self
         trailersCollectionView.dataSource = self
-        trailersCollectionView.isScrollEnabled = true
-        trailersCollectionView.reloadData()
-        
-        //Setup the reviews table view
-       /* reviewsTableViewOutlet.delegate = self
-        reviewsTableViewOutlet.dataSource = self
-        reviewsTableViewOutlet.reloadData()
-        */
+
         
         //Adds the rate with colors to the view
         addMovieRate()
@@ -56,6 +77,13 @@ class DetailsViewController: UITableViewController {
         moviePosterImageView.sd_setImage(with: URL(string: movieDisplayed!.poster_path), placeholderImage: UIImage(named: "temp_image.jpg"))
     }
     
+    @IBAction func openReviewsPage(_ sender: Any) {
+        let reviewController  = self.storyboard?.instantiateViewController(withIdentifier: "reviewsView") as! ReviewsTableViewController
+        
+        //detailController.movieDisplayed = selectedMovie
+        
+        self.navigationController?.pushViewController(reviewController, animated: true)
+    }
     func addMovieRate() {
         movieRateTextView.text = String(movieDisplayed!.vote_average)
         movieRateTextView.backgroundColor = movieDisplayed!.vote_average > 5 ?
@@ -65,6 +93,17 @@ class DetailsViewController: UITableViewController {
             UIColor.black :
             UIColor.white
 
+    }
+    
+    func playInYoutube(youtubeId: String) {
+        if let youtubeURL = URL(string: "youtube://\(youtubeId)"),
+            UIApplication.shared.canOpenURL(youtubeURL) {
+            // redirect to app
+            UIApplication.shared.open(youtubeURL, options: [:], completionHandler: nil)
+        } else if let youtubeURL = URL(string: "https://www.youtube.com/watch?v=\(youtubeId)") {
+            // redirect through safari
+            UIApplication.shared.open(youtubeURL, options: [:], completionHandler: nil)
+        }
     }
     
     @IBAction func addToFavoriteAction(_ sender: UIButton) {
@@ -84,7 +123,16 @@ class DetailsViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let count = super.tableView(tableView, numberOfRowsInSection: section)
+        if !isInternetAvailable {
+            // remove the last cell
+            return count - 2
+        }
+        return count
+    }
     // MARK: - Table view data source
     /*
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -94,20 +142,23 @@ class DetailsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return reviewTitles.count
     }
-    */
+    
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseReviewId, for: indexPath) as! ReviewTableViewCell
+        //var reviewTitle = cell.viewWithTag(1) as! UILabel
+        //var reviewBody = cell.viewWithTag(2) as! UITextView
         // Configure the cell...
-
+        cell.reviewAuthor.text = reviewTitles[indexPath.row]
+        cell.reviewContent.text = reviewContent[indexPath.row]
+        
         return cell
     }
-    */
-
+    
+*/
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -155,26 +206,35 @@ class DetailsViewController: UITableViewController {
 
 }
 
-extension DetailsViewController : UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
+extension DetailsViewController : UICollectionViewDataSource, UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return trailers.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as UICollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! TrailerCollectionViewCell
         
-        let movieTrailerImage : UIImageView = cell.viewWithTag(1) as! UIImageView
-        let movieTrailerTitle : UILabel = cell.viewWithTag(2) as! UILabel
+        //let movieTrailerImage : UIImageView = cell.viewWithTag(1) as! UIImageView
+        //let movieTrailerTitle : UILabel = cell.viewWithTag(2) as! UILabel
         
-        movieTrailerTitle.text = trailers[indexPath.row]
+        cell.trailerTitle.text = trailers[indexPath.row]
+        let trailerKey = "GpAuCG6iUcA"
+        let trialerURL = "https://img.youtube.com/vi/\(trailerKey)/sddefault.jpg"
+        cell.trailerImage.sd_setImage(with: URL(string: trialerURL), placeholderImage: UIImage(named: "temp_image.jpg"))
         
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        playInYoutube(youtubeId: "GpAuCG6iUcA")
+    }
+    
+    
+    
     
 }
-extension DetailsViewController : DetailsViewCOntrollerView{
+extension DetailsViewController : DetailsViewControllerView{
     func addToFavorite() {
         
     }

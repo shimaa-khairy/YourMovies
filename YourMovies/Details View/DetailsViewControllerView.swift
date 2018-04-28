@@ -7,7 +7,7 @@
 //
 
 import Foundation
-protocol DetailsViewCOntrollerView {
+protocol DetailsViewControllerView {
  
     func addToFavorite() -> Void
     

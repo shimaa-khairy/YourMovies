@@ -80,7 +80,7 @@ class ViewController: UIViewController,UICollectionViewDataSource, UICollectionV
         for index in 0...5 {
             let movie = Movie()
             movie.isFavorite = true
-            movie.overview = "asdfghjkgfdsdf qerhgfdcbnbv zxcvbccvbcxcvzvcxvzcv efrghcvbn"
+            movie.overview = "When the creator of a virtual reality world called the OASIS dies, he releases a video in which he challenges all OASIS users to find his Easter Egg, which will give the finder his fortune."
             movie.poster_path = "https://marketplace.canva.com/MACFQTmLl08/2/0/thumbnail_large/canva-tiger-minimalist-movie-poster-MACFQTmLl08.jpg"
             movie.release_date = "201\(index)"
             movie.title = "Title \(index)"
@@ -158,7 +158,7 @@ func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         
         movieTitle.text = listOfMovies![indexPath.row].title
         
-        moviePosterView.sd_setImage(with: URL(string: listOfMovies![indexPath.row].poster_path), placeholderImage: UIImage(named: "temp_image.jpg"))
+        moviePosterView.sd_setImage(with: URL(string: listOfMovies![indexPath.row].poster_path), placeholderImage: UIImage(named: "image_placeholder.png"))
 
     return cell
     }
@@ -166,7 +166,7 @@ func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedMovie : Movie = listOfMovies![indexPath.row]
         
-        var detailController  = self.storyboard?.instantiateViewController(withIdentifier: "Detail_Controller") as! DetailsViewController
+        var detailController  = self.storyboard?.instantiateViewController(withIdentifier: "temp") as! DetailsViewController
         
         detailController.movieDisplayed = selectedMovie
         
