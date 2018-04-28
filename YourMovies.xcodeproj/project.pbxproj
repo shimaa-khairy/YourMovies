@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C40A7C5D2094C7AD004BBCA4 /* RepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A7C5C2094C7AD004BBCA4 /* RepositoryProtocol.swift */; };
+		C40A7C5F2094C9E2004BBCA4 /* RepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A7C5E2094C9E2004BBCA4 /* RepositoryImpl.swift */; };
+		C40F64A0208EB63D002C5FFE /* Trailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40F649E208EB63B002C5FFE /* Trailer.swift */; };
+		C40F64A1208EB63D002C5FFE /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40F649F208EB63C002C5FFE /* Review.swift */; };
+		C40F64A6208EE60F002C5FFE /* CoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40F64A5208EE60F002C5FFE /* CoreDataModel.swift */; };
+		C40F64A8208EE62D002C5FFE /* CoreDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40F64A7208EE62D002C5FFE /* CoreDataProtocol.swift */; };
 		C415095D2085EEDF003E94CD /* temp_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C415095C2085EEDF003E94CD /* temp_image.jpg */; };
 		C415095F208646CC003E94CD /* ViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C415095E208646CC003E94CD /* ViewControllerView.swift */; };
 		C4150961208647FA003E94CD /* DetailsViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4150960208647FA003E94CD /* DetailsViewControllerView.swift */; };
@@ -36,6 +42,12 @@
 /* Begin PBXFileReference section */
 		A7C39236C92D5530848A2233 /* Pods-YourMovies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YourMovies.release.xcconfig"; path = "Pods/Target Support Files/Pods-YourMovies/Pods-YourMovies.release.xcconfig"; sourceTree = "<group>"; };
 		C1508FEAC992CAE29A731ECA /* Pods-YourMovies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YourMovies.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YourMovies/Pods-YourMovies.debug.xcconfig"; sourceTree = "<group>"; };
+		C40A7C5C2094C7AD004BBCA4 /* RepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryProtocol.swift; sourceTree = "<group>"; };
+		C40A7C5E2094C9E2004BBCA4 /* RepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryImpl.swift; sourceTree = "<group>"; };
+		C40F649E208EB63B002C5FFE /* Trailer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trailer.swift; sourceTree = "<group>"; };
+		C40F649F208EB63C002C5FFE /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		C40F64A5208EE60F002C5FFE /* CoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModel.swift; sourceTree = "<group>"; };
+		C40F64A7208EE62D002C5FFE /* CoreDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProtocol.swift; sourceTree = "<group>"; };
 		C415095C2085EEDF003E94CD /* temp_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = temp_image.jpg; sourceTree = "<group>"; };
 		C415095E208646CC003E94CD /* ViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerView.swift; sourceTree = "<group>"; };
 		C4150960208647FA003E94CD /* DetailsViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewControllerView.swift; sourceTree = "<group>"; };
@@ -106,6 +118,8 @@
 		C4F6B99F2083B89300B0F1B9 /* YourMovies */ = {
 			isa = PBXGroup;
 			children = (
+				C40F649F208EB63C002C5FFE /* Review.swift */,
+				C40F649E208EB63B002C5FFE /* Trailer.swift */,
 				C4A34291208F2B3600D0730B /* image_placeholder.png */,
 				C4559764208E0B8E00C15152 /* popular_ic.png */,
 				C4559765208E0B8F00C15152 /* top_rated_ic.png */,
@@ -130,6 +144,10 @@
 				C4150968208659CB003E94CD /* ViewControllerPresenterProtocol.swift */,
 				C415096A20865AD5003E94CD /* DetailsViewControllerPresenterProtocol.swift */,
 				C4A3428F208F279900D0730B /* TrailerUICollection.swift */,
+				C40F64A5208EE60F002C5FFE /* CoreDataModel.swift */,
+				C40F64A7208EE62D002C5FFE /* CoreDataProtocol.swift */,
+				C40A7C5C2094C7AD004BBCA4 /* RepositoryProtocol.swift */,
+				C40A7C5E2094C9E2004BBCA4 /* RepositoryImpl.swift */,
 			);
 			path = YourMovies;
 			sourceTree = "<group>";
@@ -263,13 +281,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				C415096B20865AD5003E94CD /* DetailsViewControllerPresenterProtocol.swift in Sources */,
+				C40F64A0208EB63D002C5FFE /* Trailer.swift in Sources */,
 				C415096E20866358003E94CD /* NetworkingProtcol.swift in Sources */,
 				C4F6B9A32083B89300B0F1B9 /* ViewController.swift in Sources */,
+				C40F64A8208EE62D002C5FFE /* CoreDataProtocol.swift in Sources */,
 				C4A34290208F279A00D0730B /* TrailerUICollection.swift in Sources */,
 				C4150969208659CB003E94CD /* ViewControllerPresenterProtocol.swift in Sources */,
+				C40A7C5D2094C7AD004BBCA4 /* RepositoryProtocol.swift in Sources */,
+				C40F64A6208EE60F002C5FFE /* CoreDataModel.swift in Sources */,
+				C40A7C5F2094C9E2004BBCA4 /* RepositoryImpl.swift in Sources */,
 				C4F6B9A12083B89300B0F1B9 /* AppDelegate.swift in Sources */,
 				C4150961208647FA003E94CD /* DetailsViewControllerView.swift in Sources */,
 				C415095F208646CC003E94CD /* ViewControllerView.swift in Sources */,
+				C40F64A1208EB63D002C5FFE /* Review.swift in Sources */,
 				C415096720865936003E94CD /* DetailsViewControllerPresenter.swift in Sources */,
 				C415096F20866358003E94CD /* Movie.swift in Sources */,
 				C4F6B9A92083B89300B0F1B9 /* YourMovies.xcdatamodeld in Sources */,
