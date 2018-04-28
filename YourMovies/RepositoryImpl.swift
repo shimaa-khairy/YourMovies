@@ -8,32 +8,39 @@
 
 import Foundation
 class RepositoryImpl : RepositoryProtocol{
-    func getAllMovies(requestType: Int) {
-        
+    var coreDataObject = CoreDataModel()
+    var netWorkingObject = Networking()
+    func getAllMovies(requestType: Int){
+        var connection = true
+        if(connection){
+            netWorkingObject.getMovies(requestType: requestType)
+        }else{
+            var movies = coreDataObject.getAllMovies()
+        }
     }
     
     func getMovieTrailers(movieId: Int) {
-        
+        netWorkingObject.getMovieTrailers(movieId: movieId)
     }
     
     func getMovieReviews(movieId: Int) {
-        
+        netWorkingObject.getMovieReviews(movieId: movieId)
     }
     
     func addToFavorite(movie: Movie) -> Bool {
-      return true
+      return coreDataObject.addToFavorite(movie:movie)
     }
     
     func getFavoriteMovies() -> [Movie] {
-       return([Movie()])
+       return(coreDataObject.getFavoriteMovies())
     }
     
     func isFavorite(movieId: Int) -> Bool {
-       return true
+       return (coreDataObject.isFavorite(movieId:movieId))
     }
     
     func removeFavorite(movieId: Int) -> Bool {
-      return true
+      return (coreDataObject.removeFavorite(movieId:movieId))
     }
     
     
