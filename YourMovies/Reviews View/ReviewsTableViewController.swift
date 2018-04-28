@@ -56,7 +56,7 @@ class ReviewsTableViewController: UITableViewController {
     }
  
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 177
+        return 120
     }
     
     /*
