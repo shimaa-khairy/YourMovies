@@ -7,13 +7,11 @@
 //
 
 import UIKit
-import Reachability
 
 class DetailsViewController:UITableViewController {
     
     public var movieDisplayed : Movie?
-    var isFave = false
-    let reach = Reachability()!
+    let delegate = UIApplication.shared.delegate as! AppDelegate
 
     @IBOutlet weak var trailersCollectionView: UICollectionView!
     
@@ -30,10 +28,10 @@ class DetailsViewController:UITableViewController {
     @IBOutlet weak var movieOverviewTextView: UITextView!
     
     //@IBOutlet weak var reviewsTableViewOutlet: UITableView!
-    let trailers = ["first","second","third","fourth","fifth"]
+    var trailers: [Trailer] = [] //= ["first","second","third","fourth","fifth"]
     let reuseIdentifier = "CollectionCellIdentifer"
     var mPresenter  : DetailsViewControllerPresenterProtocol?
-
+    
     var isInternetAvailable = false
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,28 +39,13 @@ class DetailsViewController:UITableViewController {
         self.navigationItem.title = "Details"
         mPresenter = DetailsViewControllerPresenter(view: self)
         //Check internet connection
-        reach.whenReachable = { reachability in
-            if reachability.connection == .wifi {
-                print("Reachable via WiFi")
-                self.isInternetAvailable = true
-                self.tableView.reloadData()
-            } else {
-                print("Reachable via Cellular")
-                self.isInternetAvailable = true
-                self.tableView.reloadData()
-            }
+        if(delegate.isInternetAvailable)!{
+            self.mPresenter?.getTrailers(movieId: (self.movieDisplayed?.id)!)
+            self.isInternetAvailable = true
+            self.tableView.reloadData()
+        }else{
+            print("No connection")
         }
-        
-        reach.whenUnreachable = { _ in
-            print("Not reachable")
-        }
-        
-        do {
-            try reach.startNotifier()
-        } catch {
-            print("Unable to start notifier")
-        }
-        
         //Setup the trailers collection
         self.navigationController?.title = "Details"
         trailersCollectionView.delegate = self
@@ -74,12 +57,21 @@ class DetailsViewController:UITableViewController {
         movieTitleTextView.text = movieDisplayed?.title
         movieOverviewTextView.text = movieDisplayed?.overview
         movieRealseDateTextView.text = movieDisplayed?.release_date
-        moviePosterImageView.sd_setImage(with: URL(string: movieDisplayed!.poster_path), placeholderImage: UIImage(named: "temp_image.jpg"))
+        let posterUrl : String! = "https://image.tmdb.org/t/p/w500/\(movieDisplayed!.poster_path)"
+        
+        if(mPresenter?.isFavorite(movieId: (movieDisplayed?.id)!) != true){
+            isMoviewFavoriteButton.setImage(UIImage(named:"favorites_ic.png"), for: UIControlState.normal)
+
+        }else{
+            isMoviewFavoriteButton.setImage(UIImage(named:"favorites_fill_ic.png"), for: UIControlState.normal)
+        }
+        
+        moviePosterImageView.sd_setImage(with: URL(string: posterUrl), placeholderImage: UIImage(named: "temp_image.jpg"))
     }
     
     @IBAction func openReviewsPage(_ sender: Any) {
-        let reviewController  = self.storyboard?.instantiateViewController(withIdentifier: "reviewsView") as! ReviewsTableViewController
-        
+        let reviewController  = self.storyboard?.instantiateViewController(withIdentifier: "reviewsView") as! ReviewsTableViewControllerView
+        reviewController.displayedMovieId = movieDisplayed?.id
         //detailController.movieDisplayed = selectedMovie
         
         self.navigationController?.pushViewController(reviewController, animated: true)
@@ -108,14 +100,14 @@ class DetailsViewController:UITableViewController {
     
     @IBAction func addToFavoriteAction(_ sender: UIButton) {
         //Use the movie isFav bool next
-        if(!isFave){
+        if(!(mPresenter?.isFavorite(movieId: (movieDisplayed?.id)!))!){
         sender.setImage(UIImage(named:"favorites_fill_ic.png"), for: UIControlState.normal)
-        isFave = true
-            self.addToFavorite()
+            //self.addToFavorite()
+            mPresenter?.addToFavorite(movie: movieDisplayed!)
     }else{
         sender.setImage(UIImage(named:"favorites_ic.png"), for: UIControlState.normal)
-        isFave = false
-            self.removeFromFavorite()
+            //self.removeFromFavorite()
+            mPresenter?.removeFromFavorite(movie: (movieDisplayed?.id)!)
         }
     }
     
@@ -217,9 +209,9 @@ extension DetailsViewController : UICollectionViewDataSource, UICollectionViewDe
         
         //let movieTrailerImage : UIImageView = cell.viewWithTag(1) as! UIImageView
         //let movieTrailerTitle : UILabel = cell.viewWithTag(2) as! UILabel
-        
-        cell.trailerTitle.text = trailers[indexPath.row]
-        let trailerKey = "GpAuCG6iUcA"
+        let trailerDisplayed = trailers[indexPath.row]
+        cell.trailerTitle.text = trailerDisplayed.name
+        let trailerKey = trailerDisplayed.key
         let trialerURL = "https://img.youtube.com/vi/\(trailerKey)/sddefault.jpg"
         cell.trailerImage.sd_setImage(with: URL(string: trialerURL), placeholderImage: UIImage(named: "temp_image.jpg"))
         
@@ -227,7 +219,7 @@ extension DetailsViewController : UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        playInYoutube(youtubeId: "GpAuCG6iUcA")
+        playInYoutube(youtubeId: trailers[indexPath.row].key)
     }
     
     
@@ -242,4 +234,10 @@ extension DetailsViewController : DetailsViewControllerView{
     func removeFromFavorite() {
         
     }
+    func fillTrailers(trailersList: [Trailer]){
+        trailers.removeAll()
+        trailers.append(contentsOf: trailersList)
+        trailersCollectionView.reloadData()
+    }
+
 }

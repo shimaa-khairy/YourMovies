@@ -16,13 +16,15 @@ class ViewController: UIViewController,UICollectionViewDataSource, UICollectionV
     
     @IBOutlet weak var moviesCollectionView: UICollectionView!
 
-    var isPop = true
+    var isPop = true //Most popular flag
+    var isOnPage = 1 //All Movies
     let reuseIdentifier = "CellIdentifer"
     let collectionViewHeight = 567
-    var cellsNumber : Int?
+    var cellsNumber : Int? = 0
     var button : UIButton?
     var listOfMovies : [Movie]? = []
     var mPresenter  : ViewControllerPresenterProtocol?
+    //var typeDisplayed = 1
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,8 +40,8 @@ class ViewController: UIViewController,UICollectionViewDataSource, UICollectionV
         button?.addTarget(self, action: #selector(changeTypeOfMoviesList), for: .touchUpInside)
         button?.sizeToFit()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button!)
-        
-        makeTempMovies()
+        mPresenter?.getMostPopulerMovies()
+        //makeTempMovies()
     }
 
     func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage? {
@@ -62,10 +64,12 @@ class ViewController: UIViewController,UICollectionViewDataSource, UICollectionV
             buttonImage = resizeImage(image: UIImage(named:"popular_ic.png")!, newWidth: 20)
             button?.setTitle("Most Popular", for: .normal)
             isPop = true
+            mPresenter?.getMostPopulerMovies()
         }else{
             buttonImage = resizeImage(image: UIImage(named:"top_rated_ic.png")!, newWidth: 20)
             button?.setTitle("Top Rated", for: .normal)
             isPop = false
+            mPresenter?.getTopRatedMovies()
         }
         
         button?.setImage(buttonImage?.withRenderingMode(.alwaysOriginal), for: .normal)
@@ -79,6 +83,7 @@ class ViewController: UIViewController,UICollectionViewDataSource, UICollectionV
     func makeTempMovies() {
         for index in 0...5 {
             let movie = Movie()
+            movie.id = index
             movie.isFavorite = true
             movie.overview = "When the creator of a virtual reality world called the OASIS dies, he releases a video in which he challenges all OASIS users to find his Easter Egg, which will give the finder his fortune."
             movie.poster_path = "https://marketplace.canva.com/MACFQTmLl08/2/0/thumbnail_large/canva-tiger-minimalist-movie-poster-MACFQTmLl08.jpg"
@@ -103,21 +108,23 @@ class ViewController: UIViewController,UICollectionViewDataSource, UICollectionV
             /*let heightConstraint = NSLayoutConstraint(item: moviesCollectionView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: CGFloat(collectionViewHeight))
             moviesCollectionView.addConstraint(heightConstraint)*/
             
-            noMoviesLabel.text = "";
-            cellsNumber = (listOfMovies?.count)!
-            moviesCollectionView.reloadData();
+            //noMoviesLabel.text = "";
+            //cellsNumber = (listOfMovies?.count)!
+            //moviesCollectionView.reloadData();
+            //makes sure that the type is popular
+            var buttonImage : UIImage?
+            buttonImage = resizeImage(image: UIImage(named:"popular_ic.png")!, newWidth: 20)
+            button?.setTitle("Most Popular", for: .normal)
+            isPop = true
+            button?.setImage(buttonImage?.withRenderingMode(.alwaysOriginal), for: .normal)
 
+            isOnPage = 1
+            mPresenter?.getMostPopulerMovies()
             break
         case 1:
             
-            cellsNumber = 0
-            moviesCollectionView.reloadData();
-            noMoviesLabel.text = "No Movies In Favorites."
-            
-            // set the height constraint to 0
-            /*let heightConstraint = NSLayoutConstraint(item: moviesCollectionView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 0)
-            */
-            //moviesCollectionView.addConstraint(heightConstraint)
+            isOnPage = 2
+            mPresenter?.getAllFavoriteMovies()
             
             break
         default:
@@ -138,6 +145,11 @@ class ViewController: UIViewController,UICollectionViewDataSource, UICollectionV
     return 1;
 }
 
+    override func viewWillAppear(_ animated: Bool) {
+        if(isOnPage == 2){
+            mPresenter?.getAllFavoriteMovies()
+        }
+    }
 
 //UICollectionViewDatasource methods
 func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -157,8 +169,8 @@ func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         let movieTitle : UILabel = cell.viewWithTag(2) as! UILabel
         
         movieTitle.text = listOfMovies![indexPath.row].title
-        
-        moviePosterView.sd_setImage(with: URL(string: listOfMovies![indexPath.row].poster_path), placeholderImage: UIImage(named: "image_placeholder.png"))
+        let posterUrl = "https://image.tmdb.org/t/p/w500/\(listOfMovies![indexPath.row].poster_path)"
+        moviePosterView.sd_setImage(with: URL(string: posterUrl), placeholderImage: UIImage(named: "image_placeholder.png"))
 
     return cell
     }
@@ -166,7 +178,7 @@ func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedMovie : Movie = listOfMovies![indexPath.row]
         
-        var detailController  = self.storyboard?.instantiateViewController(withIdentifier: "temp") as! DetailsViewController
+        let detailController  = self.storyboard?.instantiateViewController(withIdentifier: "temp") as! DetailsViewController
         
         detailController.movieDisplayed = selectedMovie
         

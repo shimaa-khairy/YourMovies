@@ -133,7 +133,7 @@ class CoreDataModel : CoreDataProtocol{
     func isFavorite(movieId: Int) -> Bool{
        var movies = getFavoriteMovies()
         for i in 0..<movies.count{
-            if(movies[i].id==19404)
+            if(movies[i].id == movieId)
             //if (movieId==movies[i].id)
             {
                 return true

@@ -8,22 +8,48 @@
 
 import UIKit
 import CoreData
-
+import Reachability
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var isInternetAvailable : Bool?
+    let reach = Reachability()!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
        
         ///////for testing
-        var n = Networking()
+        //var n = Networking()
+        //var data = CoreDataModel()
+        //data.clearAllData(entity: "FavoriteEntity")
         
-        n.getMovies(requestType: 1)
-        //n.getMovieReviews(movieId: 337167)
-        //n.getMovieTrailers(movieId:337167)
+        reach.whenReachable = { reachability in
+            if reachability.connection == .wifi {
+                print("Reachable via WiFi")
+                //self.netWorkingObject?.getMovies(requestType: requestType, protocolListener: presenter)
+                self.isInternetAvailable = true
+                
+            } else {
+                print("Reachable via Cellular")
+                //self.netWorkingObject?.getMovies(requestType: requestType, protocolListener: presenter)
+                self.isInternetAvailable = true
+            }
+        }
+        
+        reach.whenUnreachable = { _ in
+            //var movies = self.coreDataObject?.getAllMovies()
+            print("Not reachable")
+            self.isInternetAvailable = false
+
+            //presenter.getTheMoviesList(movies: movies!)
+        }
+        
+        do {
+            try reach.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
         return true
     }
 

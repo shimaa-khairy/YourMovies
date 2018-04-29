@@ -10,56 +10,49 @@ import Foundation
 import Reachability
 class RepositoryImpl : RepositoryProtocol{
     let reach = Reachability()!
+    let delegate = UIApplication.shared.delegate as! AppDelegate
 
-    var coreDataObject = CoreDataModel()
-    var netWorkingObject = Networking()
-    func getAllMovies(requestType: Int){
+    var coreDataObject : CoreDataProtocol?
+    var netWorkingObject : NetworkingProtocol?
+    
+    init() {
+        coreDataObject = CoreDataModel()
+        netWorkingObject = Networking()
+    }
+    func getAllMovies(requestType: Int, presenter: ViewControllerPresenterProtocol) {
         //Check internet connection
-        reach.whenReachable = { reachability in
-            if reachability.connection == .wifi {
-                print("Reachable via WiFi")
-                self.netWorkingObject.getMovies(requestType: requestType)
+        if(delegate.isInternetAvailable)!{
+            self.netWorkingObject?.getMovies(requestType: requestType, protocolListener: presenter)
+        }else{
+            var movies = self.coreDataObject?.getAllMovies()
+            presenter.getTheMoviesList(movies: movies!)
+        }
+    }
+    
+    func getMovieTrailers(movieId: Int, presenter: DetailsViewControllerPresenterProtocol) {
+        netWorkingObject?.getMovieTrailers(movieId: movieId, protocolListener: presenter)
 
-                } else {
-                print("Reachable via Cellular")
-                self.netWorkingObject.getMovies(requestType: requestType)
-               }
-        }
-        
-        reach.whenUnreachable = { _ in
-            var movies = self.coreDataObject.getAllMovies()
-            print("Not reachable")
-        }
-        
-        do {
-            try reach.startNotifier()
-        } catch {
-            print("Unable to start notifier")
-        }
     }
     
-    func getMovieTrailers(movieId: Int) {
-        netWorkingObject.getMovieTrailers(movieId: movieId)
+    func getMovieReviews(movieId:Int, presenter: ReviewsTableViewControllerPresenterProctol){
+        netWorkingObject?.getMovieReviews(movieId: movieId, protocolListener: presenter)
     }
     
-    func getMovieReviews(movieId: Int) {
-        netWorkingObject.getMovieReviews(movieId: movieId)
-    }
-    
+  
     func addToFavorite(movie: Movie) -> Bool {
-      return coreDataObject.addToFavorite(movie:movie)
+        return coreDataObject!.addToFavorite(movie:movie)
     }
     
     func getFavoriteMovies() -> [Movie] {
-       return(coreDataObject.getFavoriteMovies())
+        return(coreDataObject!.getFavoriteMovies())
     }
     
     func isFavorite(movieId: Int) -> Bool {
-       return (coreDataObject.isFavorite(movieId:movieId))
+        return (coreDataObject!.isFavorite(movieId:movieId))
     }
     
     func removeFavorite(movieId: Int) -> Bool {
-      return (coreDataObject.removeFavorite(movieId:movieId))
+        return (coreDataObject!.removeFavorite(movieId:movieId))
     }
     
     

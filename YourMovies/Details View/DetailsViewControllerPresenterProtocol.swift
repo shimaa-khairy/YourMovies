@@ -10,5 +10,11 @@ import Foundation
 protocol DetailsViewControllerPresenterProtocol {
     func addToFavorite(movie: Movie) -> Void
     
-    func removeFromFavorite(movie: Movie) -> Void
+    func removeFromFavorite(movie: Int) -> Void
+    
+    func getTrailers(movieId: Int)
+    
+    func loadTrailers(trailers: [Trailer])
+    
+    func isFavorite(movieId: Int) -> Bool
 }

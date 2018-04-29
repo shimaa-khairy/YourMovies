@@ -12,5 +12,7 @@ protocol ViewControllerPresenterProtocol {
     
     func getTopRatedMovies() -> Void
     
-    func getTheMoviesLiet(movies : [Movie]) -> Void
+    func getTheMoviesList(movies : [Movie]) -> Void
+    
+    func getAllFavoriteMovies()
 }

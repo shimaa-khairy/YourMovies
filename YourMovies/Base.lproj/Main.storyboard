@@ -258,7 +258,7 @@
                                         <rect key="frame" x="0.0" y="737" width="375" height="112"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oFR-Su-hHd" id="qUA-Ox-cDX">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="111.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Reviews:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x2o-AO-HeK">
@@ -291,7 +291,7 @@
                         </sections>
                     </tableView>
                     <connections>
-                        <outlet property="isMoviewFavoriteButton" destination="gfE-7N-sdC" id="7uJ-WD-RCv"/>
+                        <outlet property="isMoviewFavoriteButton" destination="gfE-7N-sdC" id="vxa-yg-hwt"/>
                         <outlet property="movieOverviewTextView" destination="9xI-l2-ouQ" id="SQi-yk-zj0"/>
                         <outlet property="moviePosterImageView" destination="Z7f-vS-vOM" id="qOI-oc-dXS"/>
                         <outlet property="movieRateTextView" destination="Kuw-I6-Ga7" id="TRF-kM-Kc1"/>
@@ -304,10 +304,10 @@
             </objects>
             <point key="canvasLocation" x="1792.8" y="115.59220389805098"/>
         </scene>
-        <!--Reviews Table View Controller-->
+        <!--Reviews Table View Controller View-->
         <scene sceneID="z6t-Vr-WkR">
             <objects>
-                <tableViewController storyboardIdentifier="reviewsView" id="ijT-Nm-eMx" customClass="ReviewsTableViewController" customModule="YourMovies" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="reviewsView" id="ijT-Nm-eMx" customClass="ReviewsTableViewControllerView" customModule="YourMovies" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="M8a-Da-eXV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

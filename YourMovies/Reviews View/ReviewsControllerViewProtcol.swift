@@ -7,6 +7,6 @@
 //
 
 import Foundation
-protocol ReviewsControllerProtocol {
+protocol ReviewsControllerViewProtocol {
     func fillAllReviews(movies : [Movie])
 }

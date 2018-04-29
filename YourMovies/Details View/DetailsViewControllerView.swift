@@ -12,5 +12,7 @@ protocol DetailsViewControllerView {
     func addToFavorite() -> Void
     
     func removeFromFavorite() -> Void
-
+    
+    func fillTrailers(trailersList: [Trailer])
+    
 }

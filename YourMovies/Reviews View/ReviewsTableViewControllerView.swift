@@ -8,15 +8,19 @@
 
 import UIKit
 
-class ReviewsTableViewController: UITableViewController {
+class ReviewsTableViewControllerView: UITableViewController {
 
-    let reviewTitles = ["rew1", "rew2", "rew3","rew4"]
+/*    let reviewTitles = ["rew1", "rew2", "rew3","rew4"]
     let reviewContent = ["zsxdcfvg bhnjxdcfvg bhnjdcfvg bhnjdcfvgbhn jdcf vgbhn gvbhnjmkcfvgbhnj", "zsxdcfvg bhnjxdcfvg bhnjdcfvg bhnjdcfvgbhn jdcf vgbhn gvbhnjmkcfvgbhnj", "zsxdcfvg bhnjxdcfvg bhnjdcfvg bhnjdcfvgbhn jdcf vgbhn gvbhnjmkcfvgbhnj","zsxdcfvg bhnjxdcfvg bhnjdcfvg bhnjdcfvgbhn jdcf vgbhn gvbhnjmkcfvgbhnj"]
-
-    
+*/
+    var displayedMovieId: Int?
+    var mReviews = [Review]()
+    var mPresenter : ReviewsTableViewControllerPresenterProctol?
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        mPresenter = ReviewsTableViewContollerpresenter(view: self)
+        mPresenter?.getAllReviews(movieId: displayedMovieId!)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -40,7 +44,7 @@ class ReviewsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return reviewTitles.count
+        return mReviews.count
     }
 
     
@@ -49,8 +53,9 @@ class ReviewsTableViewController: UITableViewController {
         //var reviewTitle = cell.viewWithTag(1) as! UILabel
         //var reviewBody = cell.viewWithTag(2) as! UITextView
         // Configure the cell...
-        cell.reviewAuthor.text = reviewTitles[indexPath.row]
-        cell.reviewContent.text = reviewContent[indexPath.row]
+        let reviewDisplayed = mReviews[indexPath.row]
+        cell.reviewAuthor.text = reviewDisplayed.author
+        cell.reviewContent.text = reviewDisplayed.content
         
         return cell
     }
@@ -106,9 +111,12 @@ class ReviewsTableViewController: UITableViewController {
 
 }
 
-extension ReviewsTableViewController : ReviewsControllerProtocol{
-    func fillAllReviews(movies: [Movie]) {
+extension ReviewsTableViewControllerView : ReviewsTableControllerViewProctol{
+    func fillAllReviews(reviews : [Review]){
         //Add to list of reviews then reload table
+        mReviews.removeAll()
+        mReviews.append(contentsOf: reviews)
+        self.tableView.reloadData()
     }
     
     

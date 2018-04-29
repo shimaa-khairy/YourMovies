@@ -40,7 +40,7 @@ class Networking: NSObject {
 extension Networking : NetworkingProtocol{
   
     /////////-------- func implementation -----//////////
-    func getMovies(requestType:Int){
+    func getMovies(requestType:Int, protocolListener: ViewControllerPresenterProtocol){
         let url: URL
         switch requestType {
         case 0:
@@ -61,6 +61,7 @@ extension Networking : NetworkingProtocol{
                 self.jsonResult = try JSONDecoder().decode(JsonResult.self, from: resultData!)
                 self.movies = self.jsonResult.results
                 self.CoreDataOpject.saveAllMovies(movies: self.movies)
+                protocolListener.getTheMoviesList(movies: self.movies)
             for movie in self.movies{
                // print (movie.id,":",movie.title,":",movie.vote_average)
                 }
@@ -73,15 +74,16 @@ extension Networking : NetworkingProtocol{
     }
    ///////////////////////////////////////////
     
-    func getMovieTrailers(movieId:Int) {
-     var MovieTrailers = [Trailer]()
+    func getMovieTrailers(movieId:Int, protocolListener: DetailsViewControllerPresenterProtocol) {
+     var movieTrailers = [Trailer]()
      let url = URL(string: "https://api.themoviedb.org/3/movie/"+String(movieId)+"/videos?api_key=30b6cd3d9e4cad94e10055d0eb5cdbcc&language=en-US")!
         Alamofire.request(url).responseJSON{(response) in
             let resultData = response.data
             do{
                 self.TrailerResult = try JSONDecoder().decode(MovieTrailerResult.self, from:resultData!)
-                MovieTrailers = self.TrailerResult.results
-                for movie in MovieTrailers{
+                movieTrailers = self.TrailerResult.results
+                protocolListener.loadTrailers(trailers: movieTrailers)
+                for movie in movieTrailers{
                     print (movie.name,":",movie.key)
                 }
             }
@@ -94,7 +96,8 @@ extension Networking : NetworkingProtocol{
     
    ///////////////////////////////////////////
     
-    func getMovieReviews(movieId:Int) {
+
+    func getMovieReviews(movieId:Int, protocolListener: ReviewsTableViewControllerPresenterProctol)   {
         var movieReviews = [Review]()
         let url = URL(string: "https://api.themoviedb.org/3/movie/"+String(movieId)+"/reviews?api_key=30b6cd3d9e4cad94e10055d0eb5cdbcc")!
         Alamofire.request(url).responseJSON{(response) in
@@ -102,9 +105,9 @@ extension Networking : NetworkingProtocol{
             do{
                 self.reviewResult = try JSONDecoder().decode(MovieReviewResult.self, from: resultData!)
                 
-                    movieReviews = self.reviewResult.results
-                print(movieReviews[0].author,movieReviews[0].content)
-                
+                movieReviews = self.reviewResult.results
+                //print(movieReviews[0].author,movieReviews[0].content)
+                protocolListener.loadAllReviews(mReviews: movieReviews)
             }catch{
                 print ("error")
                 

@@ -9,7 +9,7 @@
 import Foundation
 protocol NetworkingProtocol{
     
-    func getMovies(requestType:Int) 
-    func getMovieTrailers(movieId:Int)
-    func getMovieReviews(movieId:Int)
+    func getMovies(requestType:Int, protocolListener: ViewControllerPresenterProtocol)
+    func getMovieTrailers(movieId:Int, protocolListener: DetailsViewControllerPresenterProtocol)
+    func getMovieReviews(movieId:Int, protocolListener: ReviewsTableViewControllerPresenterProctol)
 }

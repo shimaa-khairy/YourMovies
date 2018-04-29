@@ -8,9 +8,10 @@
 
 import Foundation
 protocol RepositoryProtocol{
-    func getAllMovies(requestType:Int)
-    func getMovieTrailers(movieId:Int)
-    func getMovieReviews(movieId:Int)
+    func getAllMovies(requestType:Int, presenter: ViewControllerPresenterProtocol)
+    func getMovieTrailers(movieId:Int, presenter: DetailsViewControllerPresenterProtocol)
+    func getMovieReviews(movieId:Int, presenter: ReviewsTableViewControllerPresenterProctol)
+    
     func addToFavorite(movie:Movie)->Bool
     func getFavoriteMovies()->[Movie]
     func isFavorite(movieId:Int)-> Bool
