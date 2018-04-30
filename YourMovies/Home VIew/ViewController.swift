@@ -30,9 +30,7 @@ class ViewController: UIViewController,UICollectionViewDataSource, UICollectionV
         
         // Do any additional setup after loading the view, typically from a nib.
         mPresenter = ViewControllerPresenter(view: self)
-        //check the user prefs for the state it's wanted to display
-        //let buttonImage = resizeImage(image: UIImage(named:"popular_ic.png")!, newWidth: 20)
-        //changeTypeMenuBtn.image = buttonImage?.withRenderingMode(.alwaysOriginal)
+        
         button = UIButton(type: .system)
         let buttonImage = resizeImage(image: UIImage(named:"popular_ic.png")!, newWidth: 20)
         button?.setImage(buttonImage?.withRenderingMode(.alwaysOriginal), for: .normal)
@@ -41,7 +39,6 @@ class ViewController: UIViewController,UICollectionViewDataSource, UICollectionV
         button?.sizeToFit()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button!)
         mPresenter?.getMostPopulerMovies()
-        //makeTempMovies()
     }
 
     func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage? {
@@ -71,7 +68,8 @@ class ViewController: UIViewController,UICollectionViewDataSource, UICollectionV
             isPop = false
             mPresenter?.getTopRatedMovies()
         }
-        
+        isOnPage = 1
+        tabsSegmentation.selectedSegmentIndex = 0
         button?.setImage(buttonImage?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
     
@@ -80,23 +78,6 @@ class ViewController: UIViewController,UICollectionViewDataSource, UICollectionV
         // Dispose of any resources that can be recreated.
     }
 
-    func makeTempMovies() {
-        for index in 0...5 {
-            let movie = Movie()
-            movie.id = index
-            movie.isFavorite = true
-            movie.overview = "When the creator of a virtual reality world called the OASIS dies, he releases a video in which he challenges all OASIS users to find his Easter Egg, which will give the finder his fortune."
-            movie.poster_path = "https://marketplace.canva.com/MACFQTmLl08/2/0/thumbnail_large/canva-tiger-minimalist-movie-poster-MACFQTmLl08.jpg"
-            movie.release_date = "201\(index)"
-            movie.title = "Title \(index)"
-            movie.vote_average = Float(index) * 1.5
-            
-            listOfMovies?.append(movie)
-        }
-        
-        cellsNumber = listOfMovies?.count
-    
-    }
     @IBAction func tabsOnValueChange(_ sender: Any) {
         
         //remember to change the data to the returned list from the network or db
@@ -113,9 +94,19 @@ class ViewController: UIViewController,UICollectionViewDataSource, UICollectionV
             //moviesCollectionView.reloadData();
             //makes sure that the type is popular
             var buttonImage : UIImage?
-            buttonImage = resizeImage(image: UIImage(named:"popular_ic.png")!, newWidth: 20)
-            button?.setTitle("Most Popular", for: .normal)
-            isPop = true
+            if(isPop){
+                buttonImage = resizeImage(image: UIImage(named:"popular_ic.png")!, newWidth: 20)
+                button?.setTitle("Most Popular", for: .normal)
+                mPresenter?.getMostPopulerMovies()
+            }else{
+                buttonImage = resizeImage(image: UIImage(named:"top_rated_ic.png")!, newWidth: 20)
+                button?.setTitle("Top Rated", for: .normal)
+                mPresenter?.getTopRatedMovies()
+            }
+            
+            //buttonImage = resizeImage(image: UIImage(named:"popular_ic.png")!, newWidth: 20)
+            //button?.setTitle("Most Popular", for: .normal)
+            //isPop = true
             button?.setImage(buttonImage?.withRenderingMode(.alwaysOriginal), for: .normal)
 
             isOnPage = 1

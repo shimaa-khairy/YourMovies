@@ -34,6 +34,8 @@
 		C4559766208E0B9000C15152 /* popular_ic.png in Resources */ = {isa = PBXBuildFile; fileRef = C4559764208E0B8E00C15152 /* popular_ic.png */; };
 		C4559767208E0B9000C15152 /* top_rated_ic.png in Resources */ = {isa = PBXBuildFile; fileRef = C4559765208E0B8F00C15152 /* top_rated_ic.png */; };
 		C48015FC208F98D000DB63F1 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48015FB208F98D000DB63F1 /* SplashViewController.swift */; };
+		C4892B882097699D000B163D /* Movie_ic.png in Resources */ = {isa = PBXBuildFile; fileRef = C4892B862097699C000B163D /* Movie_ic.png */; };
+		C4892B892097699D000B163D /* favoritesFill_ic.png in Resources */ = {isa = PBXBuildFile; fileRef = C4892B872097699D000B163D /* favoritesFill_ic.png */; };
 		C4A34292208F2B3700D0730B /* image_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = C4A34291208F2B3600D0730B /* image_placeholder.png */; };
 		C4CB027F2093B71400CA52CB /* ReviewsTableViewControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB027E2093B71400CA52CB /* ReviewsTableViewControllerView.swift */; };
 		C4CB028820942A6E00CA52CB /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4CB028720942A6E00CA52CB /* Launch Screen.storyboard */; };
@@ -75,6 +77,8 @@
 		C4559764208E0B8E00C15152 /* popular_ic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popular_ic.png; sourceTree = "<group>"; };
 		C4559765208E0B8F00C15152 /* top_rated_ic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top_rated_ic.png; sourceTree = "<group>"; };
 		C48015FB208F98D000DB63F1 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		C4892B862097699C000B163D /* Movie_ic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Movie_ic.png; sourceTree = "<group>"; };
+		C4892B872097699D000B163D /* favoritesFill_ic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favoritesFill_ic.png; sourceTree = "<group>"; };
 		C4A34291208F2B3600D0730B /* image_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_placeholder.png; sourceTree = "<group>"; };
 		C4CB027E2093B71400CA52CB /* ReviewsTableViewControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsTableViewControllerView.swift; sourceTree = "<group>"; };
 		C4CB028720942A6E00CA52CB /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -179,6 +183,8 @@
 		C4CB02852094272000CA52CB /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C4892B872097699D000B163D /* favoritesFill_ic.png */,
+				C4892B862097699C000B163D /* Movie_ic.png */,
 				C4A34291208F2B3600D0730B /* image_placeholder.png */,
 				C4559764208E0B8E00C15152 /* popular_ic.png */,
 				C4559765208E0B8F00C15152 /* top_rated_ic.png */,
@@ -304,10 +310,12 @@
 			files = (
 				C4559767208E0B9000C15152 /* top_rated_ic.png in Resources */,
 				C4A34292208F2B3700D0730B /* image_placeholder.png in Resources */,
+				C4892B892097699D000B163D /* favoritesFill_ic.png in Resources */,
 				C4559766208E0B9000C15152 /* popular_ic.png in Resources */,
 				C4CB028820942A6E00CA52CB /* Launch Screen.storyboard in Resources */,
 				C4559762208E057400C15152 /* favorites_ic.png in Resources */,
 				C4F6B9AB2083B8A300B0F1B9 /* Assets.xcassets in Resources */,
+				C4892B882097699D000B163D /* Movie_ic.png in Resources */,
 				C4F6B9A62083B89300B0F1B9 /* Main.storyboard in Resources */,
 				C4559763208E057400C15152 /* favorites_fill_ic.png in Resources */,
 			);
