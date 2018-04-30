@@ -507,14 +507,14 @@
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="popular_ic.png" translatesAutoresizingMaskIntoConstraints="NO" id="E3c-TY-R9H">
-                                <rect key="frame" x="147" y="305" width="80" height="65"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="popular_ic.png" translatesAutoresizingMaskIntoConstraints="NO" id="E3c-TY-R9H">
+                                <rect key="frame" x="147" y="305" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="k31-9c-iGe"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.44577455520629883" blue="0.67916172742843628" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="E3c-TY-R9H" firstAttribute="top" secondItem="QAr-4X-Zft" secondAttribute="bottom" constant="17" id="2bL-Ux-bEt"/>
                             <constraint firstItem="E3c-TY-R9H" firstAttribute="centerX" secondItem="65w-9h-5N9" secondAttribute="centerX" id="8gV-aT-3tw"/>

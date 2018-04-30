@@ -63,7 +63,7 @@ class DetailsViewController:UITableViewController {
             isMoviewFavoriteButton.setImage(UIImage(named:"favorites_ic.png"), for: UIControlState.normal)
 
         }else{
-            isMoviewFavoriteButton.setImage(UIImage(named:"favorites_fill_ic.png"), for: UIControlState.normal)
+            isMoviewFavoriteButton.setImage(UIImage(named:"favoritesFill_ic.png"), for: UIControlState.normal)
         }
         
         moviePosterImageView.sd_setImage(with: URL(string: posterUrl), placeholderImage: UIImage(named: "temp_image.jpg"))
@@ -101,7 +101,7 @@ class DetailsViewController:UITableViewController {
     @IBAction func addToFavoriteAction(_ sender: UIButton) {
         //Use the movie isFav bool next
         if(!(mPresenter?.isFavorite(movieId: (movieDisplayed?.id)!))!){
-        sender.setImage(UIImage(named:"favorites_fill_ic.png"), for: UIControlState.normal)
+        sender.setImage(UIImage(named:"favoritesFill_ic.png"), for: UIControlState.normal)
             //self.addToFavorite()
             mPresenter?.addToFavorite(movie: movieDisplayed!)
     }else{
